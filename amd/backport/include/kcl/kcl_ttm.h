@@ -112,7 +112,7 @@ static inline int kcl_ttm_bo_reserve(struct ttm_buffer_object *bo,
 				 bool interruptible, bool no_wait,
 				 struct ww_acquire_ctx *ticket)
 {
-#if defined(BUILD_AS_DKMS)
+#if defined(BUILD_AS_DKMS) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 7, 0)
 	return ttm_bo_reserve(bo, interruptible, no_wait, false, ticket);
 #else
 	return ttm_bo_reserve(bo, interruptible, no_wait, ticket);
@@ -148,7 +148,7 @@ static inline int kcl_ttm_bo_move_accel_cleanup(struct ttm_buffer_object *bo,
 		bool evict, bool no_wait_gpu,
 		struct ttm_mem_reg *new_mem)
 {
-#if defined(BUILD_AS_DKMS)
+#if defined(BUILD_AS_DKMS) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 7, 0)
 	return ttm_bo_move_accel_cleanup(bo, fence,
 			evict, no_wait_gpu, new_mem);
 #else
