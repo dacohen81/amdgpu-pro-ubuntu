@@ -213,9 +213,8 @@ static void dm_pflip_high_irq(void *interrupt_params)
 
 	/* wakeup usersapce */
 	if(works->event)
-		drm_send_vblank_event(
-			adev->ddev,
-			amdgpu_crtc->crtc_id,
+		drm_crtc_send_vblank_event(
+			&amdgpu_crtc->base,
 			works->event);
 
 	spin_unlock_irqrestore(&adev->ddev->event_lock, flags);
