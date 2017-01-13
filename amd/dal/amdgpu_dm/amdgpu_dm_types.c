@@ -2517,7 +2517,7 @@ int amdgpu_dm_atomic_commit(
 	 * the software side now.
 	 */
 
-	drm_atomic_helper_swap_state(dev, state);
+	drm_atomic_helper_swap_state(state, true);
 
 	/*
 	 * From this point state become old state really. New state is
