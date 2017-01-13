@@ -998,12 +998,11 @@ void amdgpu_dm_crtc_destroy(struct drm_crtc *crtc)
 	kfree(crtc);
 }
 
-static void amdgpu_dm_atomic_crtc_gamma_set(
+static int amdgpu_dm_atomic_crtc_gamma_set(
 		struct drm_crtc *crtc,
 		u16 *red,
 		u16 *green,
 		u16 *blue,
-		uint32_t start,
 		uint32_t size)
 {
 	struct drm_device *dev = crtc->dev;
@@ -1012,6 +1011,8 @@ static void amdgpu_dm_atomic_crtc_gamma_set(
 	crtc->state->mode.private_flags |= AMDGPU_CRTC_MODE_PRIVATE_FLAGS_GAMMASET;
 
 	drm_atomic_helper_crtc_set_property(crtc, prop, 0);
+
+	return 0;
 }
 
 static int dm_crtc_funcs_atomic_set_property(
