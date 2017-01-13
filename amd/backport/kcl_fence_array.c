@@ -21,7 +21,7 @@
 #include <linux/export.h>
 #include <linux/slab.h>
 
-#if defined(BUILD_AS_DKMS)
+#if defined(BUILD_AS_DKMS) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 8, 0)
 static void fence_array_cb_func(struct fence *f, struct fence_cb *cb);
 
 static const char *fence_array_get_driver_name(struct fence *fence)
