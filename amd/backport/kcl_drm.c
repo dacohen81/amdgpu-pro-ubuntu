@@ -178,7 +178,7 @@ static inline struct drm_plane_state *
 _kcl_drm_atomic_get_existing_plane_state(struct drm_atomic_state *state,
                     struct drm_plane *plane)
 {
-    return state->plane_states[drm_plane_index(plane)];
+    return state->planes[drm_plane_index(plane)].state;
 }
 
 void
